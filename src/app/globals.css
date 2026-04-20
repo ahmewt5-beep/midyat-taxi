@@ -1,0 +1,52 @@
+@import "tailwindcss"; /* YENİ SİHİRLİ KODUMUZ BURASI */
+
+:root {
+  /* Karanlık ve Premium Renk Paleti */
+  --foreground-rgb: 250, 250, 250;
+  --background-start-rgb: 10, 10, 12;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  scroll-behavior: smooth; /* Akışkan kaydırma */
+  overflow-x: hidden;
+  font-feature-settings: "ss01", "ss03", "cv01-cv10"; /* Premium Font Detayları */
+}
+
+/* Apple Tarzı Frosted Glass Efekti */
+.glass {
+  background: rgba(20, 20, 22, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Bölüm Geçişleri İçin Sinematik Aydınlatma (Radial Gradient) */
+.section-lighting {
+  position: relative;
+}
+.section-lighting::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(245, 158, 11, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Parlayan Metin Efekti */
+.glow-text {
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
