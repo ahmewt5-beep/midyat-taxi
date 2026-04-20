@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Midyat'ın tarihi dokusunda dürüst ve seçkin ulaşım deneyimi. Metin Kaptan ile 7/24 güvenli, konforlu ve özel transferler. Hemen Rezervasyon: 0546 683 23 17",
   keywords: ["Midyat Taksi", "Premium Midyat Ulaşım", "Özel Midyat Transfer", "Dara Antik Kenti Transfer", "Beyazsu Turistik Taksi", "Mardin Havalimanı Midyat Vip", "Midyat Gece Taksi"],
   openGraph: {
-    title: "Midyat Taksi: Premium Ulaşım Sanatı | Metin Kaptan",
+    title: "Midyat Taksi: 7/24 Hizmet | Metin Kaptan",
     description: "Midyat's premium taxi transfer service. 7/24 safe & comfortable.",
     url: "https://midyattaksi.com",
     siteName: "Midyat Taksi",
