@@ -92,7 +92,7 @@ export default function Home() {
             </span>
             <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight dark:glow-text">
               Midyat'ın En Seçkin <br />
-              <span className="text-amber-600 dark:text-amber-500">Taxi Hizmeti</span>
+              <span className="text-amber-600 dark:text-amber-500">Taksi Hizmeti</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-700 dark:text-slate-200 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm dark:drop-shadow-md">
               Midyat'ın tarihi dokusunda, dürüstlük ve konforun buluştuğu seçkin bir yolculuk deneyimi. 7/24 dürüst ve premium hizmet.
