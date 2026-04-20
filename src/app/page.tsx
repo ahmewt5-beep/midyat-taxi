@@ -79,7 +79,7 @@ export default function Home() {
             src="/hero-bg.jpg"
             alt="Midyat Taksi Hizmeti"
             fill
-            unoptimized
+            quality={95}
             className="object-cover object-center opacity-80"
             priority
           />
@@ -145,7 +145,7 @@ export default function Home() {
               src="/midyat-map.jpg"
               alt="Midyat Taksi Hizmet Bölgeleri"
               fill
-              unoptimized
+              quality={95}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
@@ -181,7 +181,7 @@ export default function Home() {
                   src={item.src}
                   alt={item.alt}
                   fill
-                  unoptimized
+                  quality={95}
                   sizes="(max-width: 768px) 50vw, 33vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
