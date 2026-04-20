@@ -228,8 +228,11 @@ export default function Home() {
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.204561009088!2d41.3734493!3d37.4222002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x400a123456789012%3A0x1234567890abcdef!2sMidyat%20Taksi!5e0!3m2!1str!2str!4v1713000000000!5m2!1str!2str" width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-        <div className="text-center mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400">
-          © {new Date().getFullYear()} Midyat Taksi - Tüm Hakları Saklıdır.
+        <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+          <div>© {new Date().getFullYear()} Midyat Taksi - Tüm Hakları Saklıdır.</div>
+          <div>
+            Designed by <a href="https://noxusweb.com" target="_blank" rel="noopener noreferrer" className="text-amber-600 dark:text-amber-500 hover:underline font-semibold">noxusweb</a>
+          </div>
         </div>
       </footer>
 
