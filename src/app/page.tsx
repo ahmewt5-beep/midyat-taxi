@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Home() {
   // Kritik Hata Çözümü: Telefon numarasındaki baştaki 0 kaldırıldı. WhatsApp wa.me/905... şeklinde çalışması için
   const phoneNumber = "5466832317";
-  const whatsappMessage = "Midyat Taksi: Premium ulaşım hizmeti hakkında bilgi almak istiyorum.";
+  const whatsappMessage = "Midyat Taksi: hizmeti hakkında bilgi almak istiyorum.";
 
   const galleryItems = [
     { src: "/karda-taksi.jpg", alt: "Midyat Karlı Hava Taksi Hizmeti" },
