@@ -18,20 +18,18 @@ export default function Home() {
     { src: "/hazir-kaptan.jpg", alt: "Midyat Taksi 7/24 Hizmete Hazır" },
   ];
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Giriş animasyonu için isLoaded gecikmesi geri eklendi
     const timer = setTimeout(() => setIsLoaded(true), 500);
 
-    // Ana tema açık tema olarak ayarlanıyor, dark sınıfı manuel eklenebilir.
-    if (document.documentElement.classList.contains("dark")) {
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
+    // Koyu tema varsayılan olduğu için başlangıçta HTML'de dark class'ı yoksa ekleyelim.
+    if (!document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.add("dark");
     }
+    setTheme("dark");
 
     return () => clearTimeout(timer);
   }, []);

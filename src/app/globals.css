@@ -1,5 +1,7 @@
 @import "tailwindcss"; /* YENİ SİHİRLİ KODUMUZ BURASI */
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Karanlık ve Premium Renk Paleti */
   --foreground-rgb: 250, 250, 250;
