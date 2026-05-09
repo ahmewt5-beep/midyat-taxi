@@ -191,6 +191,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* D2. ÖNE ÇIKAN FOTOĞRAF SHOWCASE */}
+      <section className="relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center">
+        {/* Arka plan fotoğrafı */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/yeni-fotografin-adi.jpg"
+            alt="Midyat Taksi Premium Hizmet"
+            fill
+            quality={95}
+            sizes="100vw"
+            className="object-cover object-center scale-105"
+          />
+          {/* Karanlık gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/50 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30 z-10" />
+        </div>
+
+        {/* İçerik */}
+        <div className="relative z-20 max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center justify-between gap-10">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-left max-w-xl"
+          >
+            <span className="inline-block py-1.5 px-4 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-sm font-semibold tracking-widest uppercase mb-5">
+              Premium Deneyim
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-5 leading-tight tracking-tight" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)" }}>
+              Her Yolculuk<br />
+              <span className="text-amber-400">Bir Ayrıcalıktır</span>
+            </h2>
+            <p className="text-slate-200 text-lg font-medium leading-relaxed mb-8 max-w-md">
+              Midyat&apos;ın eşsiz güzelliklerini keşfederken konforunuzdan ödün vermeyin. Her detayda fark yaratıyoruz.
+            </p>
+            <a
+              href={`tel:+90${phoneNumber}`}
+              className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-400 text-slate-950 text-lg font-bold py-4 px-9 rounded-2xl transition-all shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)] hover:-translate-y-1 group"
+            >
+              <PhoneCall size={22} />
+              Hemen Rezervasyon
+              <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </a>
+          </motion.div>
+
+          {/* Sağ taraf — istatistik kartları */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="hidden md:flex flex-col gap-5"
+          >
+            {[
+              { value: "7/24", label: "Kesintisiz Hizmet" },
+              { value: "4.9★", label: "Google Puanı" },
+              { value: "500+", label: "Mutlu Yolcu" },
+            ].map((stat, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 text-center min-w-[160px] hover:bg-white/15 transition-colors">
+                <div className="text-3xl font-extrabold text-amber-400 mb-1">{stat.value}</div>
+                <div className="text-slate-200 text-sm font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* E. SOSYAL KANIT */}
       <section className="py-28 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white px-4 section-lighting transition-colors duration-500">
         <div className="max-w-6xl mx-auto text-center relative z-10">

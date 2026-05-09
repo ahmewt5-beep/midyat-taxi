@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Gizlilik Politikası",
+  description:
+    "GoMidyat - Midyat Taksi gizlilik politikası. Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi edinin.",
+  alternates: {
+    canonical: "/gizlilik-politikasi",
+  },
+  robots: {
+    index: true,
+    follow: false,
+  },
+};
 
 export default function GizlilikPolitikasi() {
   return (
@@ -9,7 +23,7 @@ export default function GizlilikPolitikasi() {
           <ChevronLeft size={20} /> Ana Sayfaya Dön
         </Link>
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight dark:glow-text">Gizlilik Politikası</h1>
-        
+
         <div className="bg-white dark:bg-slate-900/60 p-8 md:p-10 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 space-y-6">
           <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             Midyat Taksi olarak kişisel verilerinizin güvenliğine ve gizliliğine büyük önem veriyoruz. Bu metin, web sitemizi ve hizmetlerimizi kullanırken hangi bilgileri topladığımızı ve bunları nasıl koruduğumuzu açıklamaktadır.
@@ -28,6 +42,11 @@ export default function GizlilikPolitikasi() {
           <h2 className="text-2xl font-bold mt-8 text-slate-800 dark:text-slate-200">Çerezler (Cookies)</h2>
           <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             Web sitemiz ziyaretçilerine daha iyi bir deneyim sunmak için temel sistem çerezleri (örneğin açık/koyu tema tercihiniz) haricinde bilgilerinizi takip eden pazarlama çerezleri kullanmamaktadır.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-8 text-slate-800 dark:text-slate-200">İletişim</h2>
+          <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            Gizlilik politikamızla ilgili sorularınız için <strong>0546 683 23 17</strong> numaralı hattı arayabilirsiniz.
           </p>
         </div>
       </div>

@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Hakkımızda - Metin Kaptan",
+  description:
+    "Midyat Taksi olarak Metin Kaptan liderliğinde yılların deneyimiyle hemşehrilerimize ve turistlere 7/24 dürüst ve güvenilir ulaşım hizmeti sunuyoruz. GoMidyat hakkında bilgi alın.",
+  alternates: {
+    canonical: "/hakkimizda",
+  },
+  openGraph: {
+    title: "Hakkımızda | GoMidyat - Midyat Taksi",
+    description:
+      "Midyat'ın en güvenilir taksi şoförü Metin Kaptan ile tanışın. 7/24 dürüst ve güvenli ulaşım hizmeti.",
+    url: "https://www.gomidyat.com.tr/hakkimizda",
+    type: "website",
+  },
+};
 
 export default function Hakkimizda() {
   return (
@@ -9,7 +26,7 @@ export default function Hakkimizda() {
           <ChevronLeft size={20} /> Ana Sayfaya Dön
         </Link>
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight dark:glow-text">Hakkımızda</h1>
-        
+
         <div className="bg-white dark:bg-slate-900/60 p-8 md:p-10 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800">
           <h2 className="text-2xl font-bold mb-4 text-slate-800 dark:text-slate-200">Midyat'ın Güvenilir Ulaşım Yüzü: Metin Kaptan</h2>
           <p className="mb-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
