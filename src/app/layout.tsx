@@ -4,15 +4,15 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] });
 
-const SITE_URL = "https://www.gomidyat.com.tr";
-const SITE_NAME = "GoMidyat - Midyat Taksi";
+const SITE_URL = "https://www.midyattaksi.tr";
+const SITE_NAME = "Midyat - Midyat Taksi";
 const PHONE = "+905466832317";
 
 export const metadata: Metadata = {
   // ── Temel Meta Etiketleri ──────────────────────────────────────────────────
   title: {
-    default: "Midyat Taksi | GoMidyat - 7/24 Güvenilir Ulaşım | 0546 683 23 17",
-    template: "%s | GoMidyat Midyat Taksi",
+    default: "Midyat Taksi | Midyat - 7/24 Güvenilir Ulaşım | 0546 683 23 17",
+    template: "%s | Midyat Midyat Taksi",
   },
   description:
     "Midyat'ta 7/24 güvenilir, konforlu ve uygun fiyatlı taksi hizmeti. Mardin Havalimanı transferi, VIP araç, şehirlerarası seyahat. Hemen ara: 0546 683 23 17. Midyat Taksi - Metin Kaptan.",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     "Midyat taksi ücret",
     "Midyat araç kiralama",
   ],
-  authors: [{ name: "Metin Kaptan - GoMidyat", url: SITE_URL }],
+  authors: [{ name: "Metin Kaptan - Midyat", url: SITE_URL }],
   creator: "GoMidyat",
   publisher: "GoMidyat",
 
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
   // ── Open Graph (Facebook, WhatsApp önizleme) ───────────────────────────────
   openGraph: {
-    title: "Midyat Taksi | GoMidyat - 7/24 Hizmet | 0546 683 23 17",
+    title: "Midyat Taksi | Midyat - 7/24 Hizmet | 0546 683 23 17",
     description:
       "Midyat'ın en güvenilir taksi hizmeti. VIP araçlar, Havalimanı transferi, turistik turlar. 7/24 aktif. Hemen ara!",
     url: SITE_URL,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "GoMidyat - Midyat Taksi 7/24 Hizmet",
+        alt: "Midyat - Midyat Taksi 7/24 Hizmet",
       },
     ],
     locale: "tr_TR",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   // ── Twitter / X Kartı ─────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
-    title: "GoMidyat - Midyat Taksi 7/24",
+    title: "Midyat - Midyat Taksi 7/24",
     description: "Midyat'ın en güvenilir taksi hizmeti. VIP araçlar, havalimanı transferi. Hemen ara: 0546 683 23 17",
     images: ["/og-image.jpg"],
   },
@@ -113,13 +113,13 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": ["TaxiService", "LocalBusiness"],
     "@id": `${SITE_URL}/#business`,
-    name: "GoMidyat - Midyat Taksi",
+    name: "Midyat - Midyat Taksi",
     alternateName: ["Midyat Taksi", "Metin Kaptan Taksi"],
     description:
       "Midyat ve çevresinde 7/24 güvenilir, konforlu taksi ve VIP transfer hizmeti. Mardin Havalimanı, Mor Gabriel, Dara Antik Kenti ve tüm şehirlerarası rotalar.",
     url: SITE_URL,
     telephone: PHONE,
-    email: "gomidyat@gmail.com",
+    email: "midyattaksi@gmail.com",
     logo: {
       "@type": "ImageObject",
       url: `${SITE_URL}/og-image.jpg`,
@@ -221,7 +221,7 @@ export default function RootLayout({
         name: "Midyat Taksi'nin telefon numarası nedir?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "GoMidyat - Midyat Taksi'ye 0546 683 23 17 numaralı telefondan 7/24 ulaşabilirsiniz.",
+          text: "Midyat - Midyat Taksi'ye 0546 683 23 17 numaralı telefondan 7/24 ulaşabilirsiniz.",
         },
       },
       {
@@ -321,7 +321,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#0A0A0C" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-title" content="GoMidyat Taksi" />
+        <meta name="apple-mobile-web-app-title" content="Midyat Taksi" />
       </head>
       <body className={`${inter.className} text-slate-100 antialiased relative pb-20 md:pb-0`}>
         {children}
