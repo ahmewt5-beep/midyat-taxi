@@ -1,11 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { PhoneCall, MapPin, Clock, ShieldCheck, Car, Star, Navigation, Camera, ChevronRight, Moon, Sun } from "lucide-react";
+import { PhoneCall, MapPin, Clock, ShieldCheck, Car, Star, Navigation, Camera, ChevronRight, ChevronLeft, Moon, Sun, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  // Kritik Hata Çözümü: Telefon numarasındaki baştaki 0 kaldırıldı. WhatsApp wa.me/905... şeklinde çalışması için
   const phoneNumber = "5466832317";
   const whatsappMessage = "Midyat Taksi: hizmeti hakkında bilgi almak istiyorum.";
 
@@ -21,11 +20,14 @@ export default function Home() {
   const [theme, setTheme] = useState("dark");
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // --- GALERİ (LIGHTBOX) DURUMLARI ---
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+
   useEffect(() => {
-    // Giriş animasyonu için isLoaded gecikmesi geri eklendi
     const timer = setTimeout(() => setIsLoaded(true), 500);
 
-    // Koyu tema varsayılan olduğu için başlangıçta HTML'de dark class'ı yoksa ekleyelim.
     if (!document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.add("dark");
     }
@@ -33,6 +35,26 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // --- GALERİ KLAVYE VE SCROLL KONTROLÜ ---
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      // Modal açıkken arkadaki kaydırmayı durdur
+      document.body.style.overflow = "hidden";
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = "auto";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [selectedIndex]);
 
   const toggleTheme = () => {
     if (theme === "light") {
@@ -42,6 +64,40 @@ export default function Home() {
       document.documentElement.classList.remove("dark");
       setTheme("light");
     }
+  };
+
+  // --- GALERİ FONKSİYONLARI ---
+  const openLightbox = (index: number) => setSelectedIndex(index);
+  const closeLightbox = () => setSelectedIndex(null);
+
+  const nextImage = (e?: React.MouseEvent | Event) => {
+    if (e && 'stopPropagation' in e) e.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % galleryItems.length);
+    }
+  };
+
+  const prevImage = (e?: React.MouseEvent | Event) => {
+    if (e && 'stopPropagation' in e) e.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex - 1 + galleryItems.length) % galleryItems.length);
+    }
+  };
+
+  // --- MOBİL SWIPE (KAYDIRMA) KONTROLLERİ ---
+  const handleTouchStart = (e: React.TouchEvent) => setTouchStartX(e.targetTouches[0].clientX);
+  const handleTouchMove = (e: React.TouchEvent) => setTouchEndX(e.targetTouches[0].clientX);
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) nextImage();
+    if (isRightSwipe) prevImage();
+
+    setTouchStartX(0);
+    setTouchEndX(0);
   };
 
   return (
@@ -65,7 +121,7 @@ export default function Home() {
       <button
         onClick={toggleTheme}
         aria-label="Temayı Değiştir"
-        className="fixed top-6 right-6 z-[100] p-3 rounded-full bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 hover:scale-110 transition-transform"
+        className="fixed top-6 right-6 z-[90] p-3 rounded-full bg-white dark:bg-slate-800 shadow-xl border border-slate-200 dark:border-slate-700 hover:scale-110 transition-transform"
       >
         {theme === "light" ? <Moon size={24} className="text-slate-800" /> : <Sun size={24} className="text-amber-400" />}
       </button>
@@ -74,7 +130,6 @@ export default function Home() {
       <section className="relative w-full h-[90vh] md:h-screen flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-slate-950 px-4">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-100/20 via-slate-100/80 to-slate-50 dark:from-slate-950/20 dark:via-slate-950/60 dark:to-slate-950 z-10 transition-colors duration-500"></div>
-          {/* ÇÖZÜM: unoptimized={true} geri eklendi. (Optimizasyon iptali) */}
           <Image
             src="/hero-bg.jpg"
             alt="Midyat Taksi Hizmeti"
@@ -159,7 +214,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight dark:glow-text">Midyat Ulaşım Koleksiyonumuz</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-lg mx-auto font-medium leading-relaxed">Filomuzun gurur veren detayları.</p>
+              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-lg mx-auto font-medium leading-relaxed">Filomuzun gurur veren detayları. Büyütmek için tıklayın.</p>
             </div>
           </motion.div>
 
@@ -167,13 +222,14 @@ export default function Home() {
             {galleryItems.map((item, index) => (
               <motion.div
                 key={index}
-                className="relative h-[250px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg dark:shadow-2xl border-2 border-slate-200 dark:border-slate-800/80 group"
+                onClick={() => openLightbox(index)}
+                className="relative h-[250px] md:h-[320px] rounded-2xl overflow-hidden shadow-lg dark:shadow-2xl border-2 border-slate-200 dark:border-slate-800/80 group cursor-pointer"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <div className="absolute inset-0 bg-transparent group-hover:bg-black/30 transition-all duration-500 z-10 flex items-center justify-center pointer-events-none">
+                <div className="absolute inset-0 bg-black/10 dark:bg-transparent group-hover:bg-black/40 transition-all duration-500 z-10 flex items-center justify-center pointer-events-none">
                   <Camera className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" size={34} />
                 </div>
 
@@ -193,7 +249,6 @@ export default function Home() {
 
       {/* D2. ÖNE ÇIKAN FOTOĞRAF SHOWCASE */}
       <section className="relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center">
-        {/* Arka plan fotoğrafı */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/yeni-fotografin-adi.jpg"
@@ -203,12 +258,10 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-center scale-105"
           />
-          {/* Karanlık gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/50 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30 z-10" />
         </div>
 
-        {/* İçerik */}
         <div className="relative z-20 max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center justify-between gap-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -225,7 +278,7 @@ export default function Home() {
               <span className="text-amber-400">Bir Ayrıcalıktır</span>
             </h2>
             <p className="text-slate-200 text-lg font-medium leading-relaxed mb-8 max-w-md">
-              Midyat&apos;ın eşsiz güzelliklerini keşfederken konforunuzdan ödün vermeyin. Her detayda fark yaratıyoruz.
+              Midyat'ın eşsiz güzelliklerini keşfederken konforunuzdan ödün vermeyin. Her detayda fark yaratıyoruz.
             </p>
             <a
               href={`tel:+90${phoneNumber}`}
@@ -237,7 +290,6 @@ export default function Home() {
             </a>
           </motion.div>
 
-          {/* Sağ taraf — istatistik kartları */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -284,7 +336,6 @@ export default function Home() {
             <p className="text-amber-600 dark:text-amber-500 font-extrabold text-2xl tracking-tight mb-6">0 546 683 23 17</p>
           </div>
 
-          {/* EKSİK LİNKLER KISMI */}
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start gap-3">
             <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Hızlı Bağlantılar</h4>
             <a href="/hakkimizda" className="text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium">Hakkımızda</a>
@@ -313,6 +364,83 @@ export default function Home() {
           <MapPin size={22} className="text-emerald-500" /> Konum At
         </a>
       </div>
+
+      {/* --- LIGHTBOX MODAL --- */}
+      <AnimatePresence>
+        {selectedIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 backdrop-blur-sm touch-none"
+            onClick={closeLightbox}
+          >
+            {/* Üst Kapatma Butonu */}
+            <button
+              className="absolute top-6 right-6 text-white/70 hover:text-white z-[210] p-2 bg-black/20 hover:bg-black/50 rounded-full transition-all"
+              onClick={closeLightbox}
+            >
+              <X size={32} />
+            </button>
+
+            {/* Masaüstü Sol Ok */}
+            <button
+              className="absolute left-4 md:left-10 text-white/50 hover:text-white z-[210] p-4 hidden md:block hover:scale-110 transition-all"
+              onClick={prevImage}
+            >
+              <ChevronLeft size={48} />
+            </button>
+
+            {/* Masaüstü Sağ Ok */}
+            <button
+              className="absolute right-4 md:right-10 text-white/50 hover:text-white z-[210] p-4 hidden md:block hover:scale-110 transition-all"
+              onClick={nextImage}
+            >
+              <ChevronRight size={48} />
+            </button>
+
+            {/* Swipe/Görsel Alanı */}
+            <div
+              className="relative w-full h-full max-w-5xl max-h-[85vh] flex items-center justify-center px-4 md:px-24"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <Image
+                    src={galleryItems[selectedIndex].src}
+                    alt={galleryItems[selectedIndex].alt}
+                    fill
+                    quality={100}
+                    className="object-contain"
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Mobil Alt Kontroller */}
+            <div
+              className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-8 md:hidden z-[210]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="text-white/70 hover:text-white p-2" onClick={prevImage}><ChevronLeft size={32} /></button>
+              <span className="text-white/90 font-medium tracking-widest text-sm">{selectedIndex + 1} / {galleryItems.length}</span>
+              <button className="text-white/70 hover:text-white p-2" onClick={nextImage}><ChevronRight size={32} /></button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </main>
   );
 }
