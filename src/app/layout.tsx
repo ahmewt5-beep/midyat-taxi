@@ -92,8 +92,7 @@ export const metadata: Metadata = {
   },
 
   // ── Google Search Console Doğrulama ───────────────────────────────────────
-  // Search Console'dan aldığınız verification kodunu buraya yapıştırın:
-  // verification: { google: "BURAYA_KODUNUZU_YAPIŞTIRIN" },
+  verification: { google: "Q3r9TtMW28YDwVi4UK-mmw5DAZ8TkUPz01rk3tI7FE4" },
 
   // ── Kategori & İkon ───────────────────────────────────────────────────────
   category: "transportation",
