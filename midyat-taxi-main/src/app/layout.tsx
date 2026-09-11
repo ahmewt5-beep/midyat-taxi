@@ -324,5 +324,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  );
+  );// Netlify zorunlu tetikleme yapildi
 }
