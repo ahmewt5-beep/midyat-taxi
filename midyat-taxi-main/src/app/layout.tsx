@@ -91,11 +91,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // ── Google Search Console Doğrulama ───────────────────────────────────────
-  verification: {
-    google: "Q3r9TtMW28YDwVi4UK-mmw5DAZ8TkUPz01rk3tI7FE4",
-  },
-
   // ── Kategori & İkon ───────────────────────────────────────────────────────
   category: "transportation",
   icons: {
@@ -287,6 +282,9 @@ export default function RootLayout({
   return (
     <html lang="tr" className="scroll-smooth dark">
       <head>
+        {/* ── GOOGLE SEARCH CONSOLE KESİN DOĞRULAMA ETİKETİ ── */}
+        <meta name="google-site-verification" content="Q3r9TtMW28YDwVi4UK-mmw5DAZ8TkUPz01rk3tI7FE4" />
+
         {/* ── Geo / Konum Meta Etiketleri (yerel SEO) ── */}
         <meta name="geo.region" content="TR-47" />
         <meta name="geo.placename" content="Midyat, Mardin, Türkiye" />
