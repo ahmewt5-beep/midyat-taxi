@@ -192,8 +192,6 @@ export default function RootLayout({
   };
 
   // ── JSON-LD: SearchAction — Google Sitelinks Arama Kutusu ─────────────────
-  // Siteyi Google'a kaydettikten sonra bu schema, arama sonuçlarında
-  // sitenizin altında bir arama kutusu gösterir.
   const searchActionSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
